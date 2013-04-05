@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+<title>Prototype changelog</title>
+<link>http://johann.rocholl.net/prototype/</link>
+<description>Automatically generated from bzr log.</description>
+<language>en-us</language>
+<generator>bzr-log-rss v0.1</generator>
+<item>
+    <title>Fixed crash by bailing out if not enough bars were found.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090426101149-gza2v756wm1278ce</link>
+    <guid isPermaLink="false">johann@smug.local-20090426101149-gza2v756wm1278ce</guid>
+    <description><![CDATA[modified:<br />
+  decoder/decoder.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Sun, 26 Apr 2009 12:11:49 +0200</pubDate>
+</item>
+<item>
+    <title>Fixed for loop stop condition.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090425155304-03hi65gg2x3wuet4</link>
+    <guid isPermaLink="false">johann@smug.local-20090425155304-03hi65gg2x3wuet4</guid>
+    <description><![CDATA[modified:<br />
+  decoder/gnuplot.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Sat, 25 Apr 2009 17:53:04 +0200</pubDate>
+</item>
+<item>
+    <title>Ignore zoom results and trash folders.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090425113624-s4j7p2i5ms46so8e</link>
+    <guid isPermaLink="false">johann@smug.local-20090425113624-s4j7p2i5ms46so8e</guid>
+    <description><![CDATA[modified:<br />
+  .bzrignore<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Sat, 25 Apr 2009 13:36:24 +0200</pubDate>
+</item>
+<item>
+    <title>Improved table for partial results.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090425085920-bq43f0hkicq14nf6</link>
+    <guid isPermaLink="false">johann@smug.local-20090425085920-bq43f0hkicq14nf6</guid>
+    <description><![CDATA[modified:<br />
+  statistics.py<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Sat, 25 Apr 2009 10:59:20 +0200</pubDate>
+</item>
+<item>
+    <title>Table for partially correct results.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424212101-6eyl30vs0kyh4rxj</link>
+    <guid isPermaLink="false">johann@smug.local-20090424212101-6eyl30vs0kyh4rxj</guid>
+    <description><![CDATA[modified:<br />
+  statistics.py<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 23:21:01 +0200</pubDate>
+</item>
+<item>
+    <title>Format results for low resolutions.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424140716-fr8fd8d1h1k1xpop</link>
+    <guid isPermaLink="false">johann@smug.local-20090424140716-fr8fd8d1h1k1xpop</guid>
+    <description><![CDATA[modified:<br />
+  statistics.py<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 16:07:16 +0200</pubDate>
+</item>
+<item>
+    <title>Generate full LaTeX table environment.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424135008-0ik3m2fz4vk8dpzc</link>
+    <guid isPermaLink="false">johann@smug.local-20090424135008-0ik3m2fz4vk8dpzc</guid>
+    <description><![CDATA[modified:<br />
+  statistics.py<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 15:50:08 +0200</pubDate>
+</item>
+<item>
+    <title>Improved statistics generator script.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424134108-eh3o8rmiu3swano2</link>
+    <guid isPermaLink="false">johann@smug.local-20090424134108-eh3o8rmiu3swano2</guid>
+    <description><![CDATA[modified:<br />
+  statistics.py<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 15:41:08 +0200</pubDate>
+</item>
+<item>
+    <title>Summary line for all images.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424090549-l7ravu2bq6pttdex</link>
+    <guid isPermaLink="false">johann@smug.local-20090424090549-l7ravu2bq6pttdex</guid>
+    <description><![CDATA[modified:<br />
+  statistics.py<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 11:05:49 +0200</pubDate>
+</item>
+<item>
+    <title>Disabled debug printf statements.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424064544-0pgrvmwaj18csp6m</link>
+    <guid isPermaLink="false">johann@smug.local-20090424064544-0pgrvmwaj18csp6m</guid>
+    <description><![CDATA[modified:<br />
+  decoder/peaks.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 08:45:44 +0200</pubDate>
+</item>
+<item>
+    <title>Fixed crash when too many peaks are detected.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424064435-5kaccbl7t4e4rab6</link>
+    <guid isPermaLink="false">johann@smug.local-20090424064435-5kaccbl7t4e4rab6</guid>
+    <description><![CDATA[modified:<br />
+  decoder/peaks.c<br />
+  decoder/peaks.h<br />
+  decoder/trace.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 08:44:35 +0200</pubDate>
+</item>
+<item>
+    <title>Print processing steps to stdout.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090424064357-q99vsuoi6yd500tg</link>
+    <guid isPermaLink="false">johann@smug.local-20090424064357-q99vsuoi6yd500tg</guid>
+    <description><![CDATA[modified:<br />
+  picture.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 08:43:57 +0200</pubDate>
+</item>
+<item>
+    <title>Don't consider barcodes with less than 10 detected bars.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423224034-uh7h2heos9zfub0x</link>
+    <guid isPermaLink="false">johann@smug.local-20090423224034-uh7h2heos9zfub0x</guid>
+    <description><![CDATA[modified:<br />
+  decoder/quietzones.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 00:40:34 +0200</pubDate>
+</item>
+<item>
+    <title>Improved minimum difference for peak detector.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423223044-gxqkxwx6axy8qy7i</link>
+    <guid isPermaLink="false">johann@smug.local-20090423223044-gxqkxwx6axy8qy7i</guid>
+    <description><![CDATA[modified:<br />
+  decoder/peaks.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 00:30:44 +0200</pubDate>
+</item>
+<item>
+    <title>Reset simulator before each decoding attempt.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423220006-le8jej2whwnjk1hy</link>
+    <guid isPermaLink="false">johann@smug.local-20090423220006-le8jej2whwnjk1hy</guid>
+    <description><![CDATA[modified:<br />
+  decoder/decoder.c<br />
+  decoder/simulator.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Fri, 24 Apr 2009 00:00:06 +0200</pubDate>
+</item>
+<item>
+    <title>Fixed stupid oversized median for peak detector.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423215816-n6d6r6tweaxitbzl</link>
+    <guid isPermaLink="false">johann@smug.local-20090423215816-n6d6r6tweaxitbzl</guid>
+    <description><![CDATA[modified:<br />
+  decoder/peaks.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Thu, 23 Apr 2009 23:58:16 +0200</pubDate>
+</item>
+<item>
+    <title>Commented out printf statements.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423212245-te8nat32oodl15kk</link>
+    <guid isPermaLink="false">johann@smug.local-20090423212245-te8nat32oodl15kk</guid>
+    <description><![CDATA[modified:<br />
+  decoder/quietzones.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Thu, 23 Apr 2009 23:22:45 +0200</pubDate>
+</item>
+<item>
+    <title>Lower quality if wide internal quiet zone.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423205101-dtoc9qwzgqjo5c6g</link>
+    <guid isPermaLink="false">johann@smug.local-20090423205101-dtoc9qwzgqjo5c6g</guid>
+    <description><![CDATA[modified:<br />
+  decoder/quietzones.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Thu, 23 Apr 2009 22:51:01 +0200</pubDate>
+</item>
+<item>
+    <title>Improved quality measure for pairs of quiet zones, still 83% success rate on comparison suite.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423202143-0ynw6vypao7mshoa</link>
+    <guid isPermaLink="false">johann@smug.local-20090423202143-0ynw6vypao7mshoa</guid>
+    <description><![CDATA[modified:<br />
+  decoder/quietzones.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Thu, 23 Apr 2009 22:21:43 +0200</pubDate>
+</item>
+<item>
+    <title>Smaller debug output.</title>
+    <link>http://johann.rocholl.net/prototype/revision/johann@smug.local-20090423201944-uqb1v1xk6m4ty3ew</link>
+    <guid isPermaLink="false">johann@smug.local-20090423201944-uqb1v1xk6m4ty3ew</guid>
+    <description><![CDATA[modified:<br />
+  picture.c<br />
+]]></description>
+    <author>&#x6a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x40;&#x73;&#x6d;&#x75;&#x67;&#x2e;&#x6c;&#x6f;&#x63;&#x61;&#x6c;&#x20;&#x28;&#x4a;&#x6f;&#x68;&#x61;&#x6e;&#x6e;&#x20;&#x43;&#x2e;&#x20;&#x52;&#x6f;&#x63;&#x68;&#x6f;&#x6c;&#x6c;&#x29;</author>
+    <pubDate>Thu, 23 Apr 2009 22:19:44 +0200</pubDate>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+<channel>
+<title>Prototype changelog</title>
+<link>http://johann.rocholl.net/prototype/</link>
+<description>Automatically generated from bzr log.</description>
+<language>en-us</language>
+<generator>bzr-log-rss v0.1</generator>
+</channel>
+</rss>

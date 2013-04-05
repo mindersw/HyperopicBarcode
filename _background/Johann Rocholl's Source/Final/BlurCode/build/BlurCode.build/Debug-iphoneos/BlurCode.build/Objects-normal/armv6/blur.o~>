@@ -1,0 +1,22 @@
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:7: error: syntax error before ‘*’ token
+/Users/johann/iPhone/BlurCode/Decoder/blur.c: In function ‘compute_gaussian_kernel’:
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:8: error: number of arguments doesn’t match prototype
+/Users/johann/iPhone/BlurCode/Decoder/blur.h:4: error: prototype declaration
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:9: error: ‘kernel_width’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:9: error: (Each undeclared identifier is reported only once
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:9: error: for each function it appears in.)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:12: error: ‘sigma’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:14: error: ‘kernel’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c: At top level:
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:26: error: syntax error before ‘*’ token
+/Users/johann/iPhone/BlurCode/Decoder/blur.c: In function ‘convolve_1d’:
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:29: error: number of arguments doesn’t match prototype
+/Users/johann/iPhone/BlurCode/Decoder/blur.h:8: error: prototype declaration
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:30: error: ‘KERNEL_WIDTH’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:31: error: ‘start’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:32: error: ‘stop’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:32: error: ‘width’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:35: error: ‘kernel_width’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:36: error: ‘kernel’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:36: error: ‘input’ undeclared (first use in this function)
+/Users/johann/iPhone/BlurCode/Decoder/blur.c:38: error: ‘smooth’ undeclared (first use in this function)

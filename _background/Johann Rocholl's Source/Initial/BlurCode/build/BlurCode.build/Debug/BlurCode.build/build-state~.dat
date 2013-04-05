@@ -1,0 +1,68 @@
+TBlurCode
+v7
+r1
+cCheck dependencies
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/BlurCodeViewController.xib
+c0000000049A0D21E0000000000001639
+t1235276318
+s5689
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Images/Default.png
+c0000000049A0D21E00000000000337E4
+t1235276318
+s210916
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/MainWindow.xib
+c0000000049A0D21E00000000000021CA
+t1235276318
+s8650
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app/Contents/Info.plist
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app/Contents/PkgInfo
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app/Contents/Resources/BlurCodeViewController.nib
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app/Contents/Resources/Default.png
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app/Contents/Resources/MainWindow.nib
+t2
+s0
+
+NInfo.plist
+c0000000049A0D21E0000000000000391
+t1235276318
+s913
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies360620957#360620957#0(68"[BEROR]error: There is no SDK with the name or path 'iphoneos2.2.1'1(4@60"error: There is no SDK with the name or path 'iphoneos2.2.1'360620957#18446744073709551615#0#0(1@0"0(0#1#0"17205281536#0"0#
+
+CCompileXIB "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/BlurCodeViewController.xib"
+r0
+
+CCompileXIB "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/MainWindow.xib"
+r0
+
+CCpResource build/Debug/BlurCode.app/Contents/Resources/Default.png Images/Default.png
+r0
+
+CProcessInfoPlistFile "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app/Contents/Info.plist" Info.plist
+r0
+
+CTouch "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug/BlurCode.app"
+r0
+

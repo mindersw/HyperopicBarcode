@@ -1,0 +1,367 @@
+TBlurCode
+v7
+r1
+cCheck dependencies
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk
+c000000004E1614A60000000000000110
+t1310069926
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+c000000004CB3DFCF00000000000001E5
+t1286856655
+s485
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004CC10EF500000000003532B0
+t1287720693
+s3486384
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004CC10F4700000000003E1F20
+t1287720775
+s4071200
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004CC10F1C0000000000001466
+t1287720732
+s5222
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.h
+c000000004CC1111C00000000000000C4
+t1287721244
+s196
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004CC11AE60000000000000AA1
+t1287723750
+s2721
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004CC11B750000000000C769F0
+t1287723893
+s13068784
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/math.h
+c000000004CB3E44400000000000004F1
+t1286857796
+s1265
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/stdio.h
+c000000004CB3E4B800000000000040AC
+t1286857912
+s16556
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/usr/include/stdlib.h
+c000000004CB3E4B80000000000002DF5
+t1286857912
+s11765
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/../../checkout/opencv-1.1.0-static/libcv.a
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/../../checkout/opencv-1.1.0-static/libcxcore.a
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/BlurCodeViewController.xib
+c0000000049A0D21E0000000000001639
+t1235276318
+s5689
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/BlurCode_Prefix.pch
+c0000000049A0D21E00000000000000B9
+t1235276318
+s185
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/BlurCodeAppDelegate.h
+c0000000049A0D21E00000000000001EA
+t1235276318
+s490
+i<UIKit/UIKit.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/BlurCodeAppDelegate.m
+c0000000049A0D21E00000000000003AC
+t1235276318
+s940
+i"BlurCodeAppDelegate.h"
+i"BlurCodeViewController.h"
+i"FullscreenPickerController.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/BlurCodeViewController.h
+c0000000049A0D21E00000000000000F6
+t1235276318
+s246
+i<UIKit/UIKit.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/BlurCodeViewController.m
+c0000000049A0D21E0000000000000553
+t1235276318
+s1363
+i"BlurCodeViewController.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/FullscreenPickerController.h
+c0000000049A0D21E0000000000000151
+t1235276318
+s337
+i<UIKit/UIKit.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/FullscreenPickerController.m
+c0000000049A0D21E0000000000000CDB
+t1235276318
+s3291
+i"FullscreenPickerController.h"
+i<QuartzCore/QuartzCore.h>
+i<cv.h>
+i"decoder.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/boolean.h
+c0000000049A0D21E00000000000000D8
+t1235276318
+s216
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/decoder.c
+c0000000049A0D21E0000000000000DED
+t1235276318
+s3565
+i"decoder.h"
+i"gradients.h"
+i<stdio.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/decoder.h
+c0000000049A0D21E0000000000000075
+t1235276318
+s117
+i<cv.h>
+i"boolean.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/dir16.c
+c0000000049A0D21E0000000000000837
+t1235276318
+s2103
+i<stdio.h>
+i<stdlib.h>
+i<math.h>
+i"dir16.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/dir16.h
+c0000000049A0D21E00000000000000A5
+t1235276318
+s165
+i"boolean.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/dir8.c
+c0000000049A0D21E00000000000005C3
+t1235276318
+s1475
+i<stdio.h>
+i<stdlib.h>
+i<math.h>
+i"dir8.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/dir8.h
+c0000000049A0D21E000000000000009E
+t1235276318
+s158
+i"boolean.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/gradients.c
+c0000000049A0D21E0000000000000FC6
+t1235276318
+s4038
+i"gradients.h"
+i"dir8.h"
+i"dir16.h"
+i"minmax.h"
+i<stdio.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/gradients.h
+c0000000049A0D21E0000000000000108
+t1235276318
+s264
+i<cv.h>
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/minmax.c
+c0000000049A0D21E00000000000001E1
+t1235276318
+s481
+i"minmax.h"
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/minmax.h
+c0000000049A0D21E000000000000013F
+t1235276318
+s319
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Images/Default.png
+c0000000049A0D21E00000000000337E4
+t1235276318
+s210916
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/MainWindow.xib
+c0000000049A0D21E00000000000021CA
+t1235276318
+s8650
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/BlurCode.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/BlurCodeAppDelegate.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/BlurCodeViewController.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/FullscreenPickerController.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/decoder.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/dir16.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/dir8.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/gradients.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/main.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/minmax.o
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app.dSYM
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/BlurCode
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/BlurCodeViewController.nib
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/Default.png
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/Info.plist
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/MainWindow.nib
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/PkgInfo
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/ResourceRules.plist
+t2
+s0
+
+N/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/main.m
+c0000000049A0D21E000000000000016F
+t1235276318
+s367
+i<UIKit/UIKit.h>
+
+N/var/folders/dl/jy_yfj_16xj2c5rfm5sptp680000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/BlurCode_Prefix-dlbbwtbznlcodsfretrzbzdmuqma/BlurCode_Prefix.pch.gch
+t2
+s0
+
+N/var/folders/dl/jy_yfj_16xj2c5rfm5sptp680000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/BlurCode_Prefix-exsufrqgwqyiauhgevjqrmnulgri/BlurCode_Prefix.pch.gch
+t2
+s0
+
+NInfo.plist
+c0000000049A0D21E0000000000000391
+t1235276318
+s913
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies360622304#360622304#0(133"[BEROR]Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain1(4@125"Code Sign error: The identity 'iPhone Developer' doesn't match any valid certificate/private key pair in the default keychain360622304#18446744073709551615#0#0(1@0"0(0#1#0"4574954816#0"0#
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/BlurCodeAppDelegate.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/BlurCodeAppDelegate.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/BlurCodeViewController.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/BlurCodeViewController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/FullscreenPickerController.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Classes/FullscreenPickerController.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/decoder.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/decoder.c" normal armv6 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/dir16.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/dir16.c" normal armv6 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/dir8.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/dir8.c" normal armv6 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/gradients.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/gradients.c" normal armv6 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/main.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/main.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/BlurCode.build/Debug-iphoneos/BlurCode.build/Objects-normal/armv6/minmax.o "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/Decoder/minmax.c" normal armv6 c com.apple.compilers.gcc.4_2
+r0
+
+CCompileXIB "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/BlurCodeViewController.xib"
+r0
+
+CCompileXIB "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/MainWindow.xib"
+r0
+
+CCopyPNGFile "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/Default.png" Images/Default.png
+r0
+
+CCpResource build/Debug-iphoneos/BlurCode.app/ResourceRules.plist /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk/ResourceRules.plist
+r0
+
+CGenerateDSYMFile "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app.dSYM" "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/BlurCode"
+r0
+
+CLd "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/BlurCode" normal armv6
+r0
+
+CProcessInfoPlistFile "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app/Info.plist" Info.plist
+r0
+
+CProcessPCH /var/folders/dl/jy_yfj_16xj2c5rfm5sptp680000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/BlurCode_Prefix-dlbbwtbznlcodsfretrzbzdmuqma/BlurCode_Prefix.pch.gch BlurCode_Prefix.pch normal armv6 c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/dl/jy_yfj_16xj2c5rfm5sptp680000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/BlurCode_Prefix-exsufrqgwqyiauhgevjqrmnulgri/BlurCode_Prefix.pch.gch BlurCode_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CTouch "/Volumes/Users/mlamorte/Springboard/Working Copies/MYStuff/_devBits/Barcode/BlurCode/build/Debug-iphoneos/BlurCode.app"
+r0
+

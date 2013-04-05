@@ -1,0 +1,234 @@
+// !$*UTF8*$!
+{
+	256AC3D80F4B6AC300CF3369 /* HyperopicBarcodeAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 432}}";
+			sepNavSelRange = "{283, 24}";
+			sepNavVisRange = "{0, 1589}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 4D79F03016D57606003A8BDE /* HyperopicBarcode */;
+		activeTarget = 8D1107260486CEB800E47090 /* HyperopicBarcode */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* HyperopicBarcode */,
+		);
+		codeSenseManager = 4D79F04516D5760D003A8BDE /* Code sense */;
+		executables = (
+			4D79F03016D57606003A8BDE /* HyperopicBarcode */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					681,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					641,
+					60,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 386883699;
+			PBXWorkspaceStateSaveDate = 386883699;
+		};
+		perUserProjectItems = {
+			4D79F17116D57C62003A8BDE /* PBXTextBookmark */ = 4D79F17116D57C62003A8BDE /* PBXTextBookmark */;
+			4D79F17216D57C62003A8BDE /* PBXTextBookmark */ = 4D79F17216D57C62003A8BDE /* PBXTextBookmark */;
+			4D79F17316D57C62003A8BDE /* PBXTextBookmark */ = 4D79F17316D57C62003A8BDE /* PBXTextBookmark */;
+			4D79F17C16D57D97003A8BDE /* PBXTextBookmark */ = 4D79F17C16D57D97003A8BDE /* PBXTextBookmark */;
+			4D79F19C16D580E7003A8BDE /* PBXTextBookmark */ = 4D79F19C16D580E7003A8BDE /* PBXTextBookmark */;
+			4D7DDB9F16EF602D002B16B5 /* PBXTextBookmark */ = 4D7DDB9F16EF602D002B16B5 /* PBXTextBookmark */;
+			4DE63017170F607D00626EBA /* PBXTextBookmark */ = 4DE63017170F607D00626EBA /* PBXTextBookmark */;
+		};
+		sourceControlManager = 4D79F04416D5760D003A8BDE /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	4D79F03016D57606003A8BDE /* HyperopicBarcode */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = HyperopicBarcode;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	4D79F04416D5760D003A8BDE /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	4D79F04516D5760D003A8BDE /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	4D79F04E16D576C9003A8BDE /* BarCodeDecoder.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 1140}}";
+			sepNavSelRange = "{309, 0}";
+			sepNavVisRange = "{0, 725}";
+		};
+	};
+	4D79F06016D576C9003A8BDE /* gnuplot.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1134, 1752}}";
+			sepNavSelRange = "{30, 7}";
+			sepNavVisRange = "{0, 523}";
+		};
+	};
+	4D79F09716D57713003A8BDE /* BarcodeController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 924}}";
+			sepNavSelRange = "{273, 0}";
+			sepNavVisRange = "{0, 1092}";
+		};
+	};
+	4D79F09816D57713003A8BDE /* BarcodeController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 10344}}";
+			sepNavSelRange = "{24814, 0}";
+			sepNavVisRange = "{24288, 1233}";
+		};
+	};
+	4D79F0AD16D57767003A8BDE /* core_c.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {859, 22416}}";
+			sepNavSelRange = "{2224, 0}";
+			sepNavVisRange = "{0, 1994}";
+		};
+	};
+	4D79F17116D57C62003A8BDE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4D79F0AD16D57767003A8BDE /* core_c.h */;
+		name = "core_c.h: 47";
+		rLen = 0;
+		rLoc = 2224;
+		rType = 0;
+		vrLen = 1994;
+		vrLoc = 0;
+	};
+	4D79F17216D57C62003A8BDE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4D79F04E16D576C9003A8BDE /* BarCodeDecoder.m */;
+		name = "BarCodeDecoder.m: 21";
+		rLen = 0;
+		rLoc = 309;
+		rType = 0;
+		vrLen = 725;
+		vrLoc = 0;
+	};
+	4D79F17316D57C62003A8BDE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4D79F09716D57713003A8BDE /* BarcodeController.h */;
+		name = "BarcodeController.h: 11";
+		rLen = 0;
+		rLoc = 273;
+		rType = 0;
+		vrLen = 1092;
+		vrLoc = 0;
+	};
+	4D79F17C16D57D97003A8BDE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4D79F09816D57713003A8BDE /* BarcodeController.m */;
+		name = "BarcodeController.m: 729";
+		rLen = 0;
+		rLoc = 24814;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 24288;
+	};
+	4D79F19C16D580E7003A8BDE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4D79F06016D576C9003A8BDE /* gnuplot.c */;
+		name = "gnuplot.c: 3";
+		rLen = 7;
+		rLoc = 30;
+		rType = 0;
+		vrLen = 1077;
+		vrLoc = 0;
+	};
+	4D7DDB9F16EF602D002B16B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* HyperopicBarcodeAppDelegate.h */;
+		name = "HyperopicBarcodeAppDelegate.h: 8";
+		rLen = 24;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 1589;
+		vrLoc = 0;
+	};
+	4DE63017170F607D00626EBA /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* HyperopicBarcodeAppDelegate.h */;
+		name = "HyperopicBarcodeAppDelegate.h: 8";
+		rLen = 24;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 1589;
+		vrLoc = 0;
+	};
+	8D1107260486CEB800E47090 /* HyperopicBarcode */ = {
+		activeExec = 0;
+		executables = (
+			4D79F03016D57606003A8BDE /* HyperopicBarcode */,
+		);
+	};
+}
