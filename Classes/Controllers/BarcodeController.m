@@ -28,7 +28,7 @@
 
 #import "BarcodeController.h"
 #import <QTKit/QTKit.h>
-#import <QuickTime/QuickTime.h>
+//#import <QuickTime/QuickTime.h>
 #import <QuartzCore/CIImage.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BarCodeDecoder.h"
@@ -193,6 +193,7 @@
 				if (keepScanning) {
 					keepScanning = 0;
 					[self foundBarcode:digits];
+                    [innerPool release];
                     return YES;
 				}
 			}
@@ -379,21 +380,24 @@
 	[searchResults release];
 	
 	
-	NSString *detailPage = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:detailURL]
+	NSString *detailPage = [[[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:detailURL]
 														  encoding:NSASCIIStringEncoding
-															 error:&e];
+															 error:&e] autorelease];
 	
 	if (e) {
 		NSLog(@"webScrapeAmazonForBarcode Lookup Error: %@", e);
-		[detailPage release];
 		return [NSDictionary dictionary];
 	}
-	NSMutableString *mutableDetail = [[NSMutableString alloc] initWithString:detailPage];
+    if (detailPage == nil) {
+		NSLog(@"webScrapeAmazonForBarcode Lookup Error details empty for: %@", searchResultsURL);
+		return [NSDictionary dictionary];        
+    }
+    
+	NSMutableString *mutableDetail = [NSMutableString stringWithString:detailPage];
 	
 	// --- Get Product Image
 	if ([mutableDetail rangeOfString:@"prodImageCell"].location == NSNotFound) {
 		// no results found
-		[mutableDetail release];
 		return [NSDictionary dictionary];
 	} else {
 		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"prodImageCell"].location + 13))];
@@ -494,10 +498,7 @@
 		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
 		[scanner scanUpToString:@"<" intoString:&brand];
 	}
-	
-	[mutableDetail release];
-	[detailPage release];
-	
+		
 	NSDictionary *returnDict = [NSDictionary dictionaryWithObjectsAndKeys:productImageURL, @"imagePath", productTitle, @"title", currency, @"currency", listPrice, @"listPrice", category, @"category", model, @"model", brand, @"brand", nil];
 	
 	//NSLog(@"Return: %@", returnDict);
