@@ -1,0 +1,15 @@
+.DS_Store
+*.swp
+*~.nib
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.xcworkspace
+
+*.mode1*
+*.mode2*
+
+.LSOverride
+
+xcuserdata
