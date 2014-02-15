@@ -855,12 +855,13 @@
 					"\"$(SRCROOT)/Libraries/OpenCV Libraries\"",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lopencv_imgproc",
 					"-lstdc++",
 					"-lopencv_core",
+					"-stdlib=libstdc++",
 					"-lz",
 				);
 				PRODUCT_NAME = HyperopicBarcode;
@@ -903,12 +904,13 @@
 					"\"$(SRCROOT)/Libraries/OpenCV Libraries\"",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lopencv_imgproc",
 					"-lstdc++",
 					"-lopencv_core",
+					"-stdlib=libstdc++",
 					"-lz",
 				);
 				PRODUCT_NAME = HyperopicBarcode;
