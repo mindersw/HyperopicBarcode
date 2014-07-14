@@ -28,7 +28,7 @@
 
 #import "BarcodeController.h"
 #import <QTKit/QTKit.h>
-#import <QuickTime/QuickTime.h>
+//#import <QuickTime/QuickTime.h>
 #import <QuartzCore/CIImage.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BarCodeDecoder.h"
@@ -194,12 +194,25 @@
 					default:
 						break;
 				}
+<<<<<<< HEAD
 				
 				
 				if (success && keepScanning) {
 					if (keepScanning) {
 						keepScanning = 0;
 						[self foundBarcode:digits];
+=======
+				default:
+					break;
+			}
+			
+			
+			if (success && keepScanning) {
+				if (keepScanning) {
+					keepScanning = 0;
+					[self foundBarcode:digits];
+                    [innerPool release];
+>>>>>>> FETCH_HEAD
                     return YES;
 					}
 				}
@@ -331,6 +344,100 @@
 	
     
 	NSError *e = nil;
+<<<<<<< HEAD
+=======
+	NSMutableString *searchResultsURL = [[NSMutableString alloc] initWithCapacity:10];
+	
+	if ([country isEqual:@"US"]) {
+		[searchResultsURL setString:@"http://www.amazon.com/s/field-keywords="];
+	} else if ([country isEqual:@"UK"]) {
+		[searchResultsURL setString:@"http://www.amazon.co.uk/s/field-keywords="];
+	} else if ([country isEqual:@"DE"]) {
+		[searchResultsURL setString:@"http://www.amazon.de/s/field-keywords="];
+	} else if ([country isEqual:@"JP"]) {
+		[searchResultsURL setString:@"http://www.amazon.jp/s/field-keywords="];
+	} else if ([country isEqual:@"CA"]) {
+		[searchResultsURL setString:@"http://www.amazon.ca/s/field-keywords="];
+	} else if ([country isEqual:@"FR"]) {
+		[searchResultsURL setString:@"http://www.amazon.fr/s/field-keywords="];
+	} else if ([country isEqual:@"IT"]) {
+		[searchResultsURL setString:@"http://www.amazon.it/s/field-keywords="];
+	} else if ([country isEqual:@"CN"]) {
+		[searchResultsURL setString:@"http://www.amazon.cn/s/field-keywords="];
+	} else if ([country isEqual:@"ES"]) {
+		[searchResultsURL setString:@"http://www.amazon.es/s/field-keywords="];
+	} else {
+		[searchResultsURL setString:@"http://www.amazon.com/s/field-keywords="];
+	}
+	
+	
+	[searchResultsURL appendString:aBarcode];
+	NSMutableString *searchResults = [[NSMutableString alloc] initWithContentsOfURL:[NSURL URLWithString:searchResultsURL] 
+																		   encoding:NSUTF8StringEncoding 
+																			  error:&e];
+	if (e) {
+		// we send the error home so that if there is a change in the URL, we'll know about it without the user sending a bug report
+		NSString *logError = [NSString stringWithFormat:@"http://www.mindersoftworks.com/appsupport/mystuff2/errorlogger.php?error=%@&url=%@", [e localizedDescription], searchResults];
+		NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:logError]];
+		[NSURLConnection connectionWithRequest:theRequest delegate:self];
+	}
+	
+	[searchResultsURL release];
+	
+	NSScanner *scanner;
+	scanner = [NSScanner scannerWithString:(NSString *)searchResults];
+	NSString *deleteMe = @"";
+	
+	if ([searchResults rangeOfString:@"result_0"].location == NSNotFound) {
+		// no search results found
+		[searchResults release];
+		return [NSDictionary dictionary];
+	}
+	
+	[scanner scanUpToString:@"result_0" intoString:&deleteMe];
+	
+	[searchResults deleteCharactersInRange:NSMakeRange(0, ([deleteMe length] - 1))];
+	
+	scanner = [NSScanner scannerWithString:(NSString *)searchResults];
+	[scanner scanUpToString:@"href=\"" intoString:&deleteMe];
+	[searchResults deleteCharactersInRange:NSMakeRange(0, ([deleteMe length] + 6))];
+	
+	scanner = [NSScanner scannerWithString:(NSString *)searchResults];	
+	NSString *detailURL = @"";
+	[scanner scanUpToString:@"/ref=" intoString:&detailURL];
+	[searchResults release];
+	
+	
+	NSString *detailPage = [[[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:detailURL]
+														  encoding:NSASCIIStringEncoding
+															 error:&e] autorelease];
+	
+	if (e) {
+		NSLog(@"webScrapeAmazonForBarcode Lookup Error: %@", e);
+		return [NSDictionary dictionary];
+	}
+    if (detailPage == nil) {
+		NSLog(@"webScrapeAmazonForBarcode Lookup Error details empty for: %@", searchResultsURL);
+		return [NSDictionary dictionary];        
+    }
+    
+	NSMutableString *mutableDetail = [NSMutableString stringWithString:detailPage];
+	
+	// --- Get Product Image
+	if ([mutableDetail rangeOfString:@"prodImageCell"].location == NSNotFound) {
+		// no results found
+		return [NSDictionary dictionary];
+	} else {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"prodImageCell"].location + 13))];
+	}
+
+	if ([mutableDetail rangeOfString:@"\"large\":\""].location == NSNotFound) {
+		// no results found
+		return [NSDictionary dictionary];
+	} else {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"\"large\":\""].location + 9))];
+	}
+>>>>>>> FETCH_HEAD
 
 	NSString *searchResults = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:httpRequest]
 															 encoding:NSASCIIStringEncoding
@@ -339,7 +446,102 @@
 	
 	return searchResults;
 	
+<<<<<<< HEAD
     
+=======
+	scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+	NSString *productImageURL = @"";
+	[scanner scanUpToString:@"\"" intoString:&productImageURL];
+	
+	[mutableDetail deleteCharactersInRange:NSMakeRange(0, [productImageURL length])];
+	
+	
+	// --- Get Product Title //btAsinTitle
+	NSString *productTitle = @"";
+	//[scanner scanUpToString:@"btAsinTitle\">" intoString:&deleteMe];
+	[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"btAsinTitle\""].location + 13))];
+	if ([[mutableDetail substringToIndex:1] isEqual:@">"]) {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, 1)];
+	}
+	scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+	[scanner scanUpToString:@"</span>" intoString:&productTitle];
+	scanner = [NSScanner scannerWithString:productTitle];
+	[scanner scanUpToString:@"<span" intoString:&productTitle];
+	if ([[productTitle substringToIndex:1] isEqual:@">"]) {
+		productTitle = [productTitle substringFromIndex:1];
+	}
+	
+	
+	[mutableDetail deleteCharactersInRange:NSMakeRange(0, [productTitle length])];
+	scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+	
+	// --- Get Product Price
+	//[mutableDetail setString:detailPage];
+	NSMutableString *currency = [[[NSMutableString alloc] initWithString:@""] autorelease];
+	NSString *listPrice = @"";
+	
+	if ([detailPage rangeOfString:@"class=\"listprice\">"].location != NSNotFound) {
+		[scanner scanUpToString:@"class=\"listprice\">" intoString:&deleteMe];
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([deleteMe length] + 18))];
+		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+		NSString *price = @"";
+		[scanner scanUpToString:@"<" intoString:&price];
+		if ([price length] > 0) {
+			[currency setString:[price substringToIndex:1]];
+			[currency appendString:@" - "];
+			listPrice = [price substringWithRange:NSMakeRange(1, ([price length] - 1))];
+		}
+		// get currency code
+		[mutableDetail setString:detailPage];
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"\"currenyCode\":\""].location + 15))];
+		[currency appendString:[mutableDetail substringWithRange:NSMakeRange(0, 3)]];
+
+		//NSLog(@"currency: %@", currency);
+	}
+	
+	
+	// --- Get Product Category
+	NSString *category = @"";
+	[mutableDetail setString:detailPage];
+	// Not sure why the scanner isn't working
+	//scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+	//[scanner scanUpToString:@"selected=\"selected\" current=\"parent\">" intoString:&deleteMe];
+	if ([detailPage rangeOfString:@"selected=\"selected\" current=\"parent\">"].location != NSNotFound) {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"selected=\"selected\" current=\"parent\">"].location + 37))];
+		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+		[scanner scanUpToString:@"<" intoString:&category];
+	} else if ([detailPage rangeOfString:@"selected=\"selected\">"].location != NSNotFound) {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"selected=\"selected\">"].location + 20))];
+		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+		[scanner scanUpToString:@"<" intoString:&category];
+	}
+	
+	
+	// --- Get Model Number (if available)
+	NSString *model = @"";
+	[mutableDetail setString:detailPage];
+	if ([detailPage rangeOfString:@"<b>Item model number:</b>"].location != NSNotFound) {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"<b>Item model number:</b>"].location + 25))];
+		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+		[scanner scanUpToString:@"<" intoString:&model];
+	}
+	
+	// --- Get Brand (if available)
+	NSString *brand = @"";
+	[mutableDetail setString:detailPage];
+	if ([detailPage rangeOfString:@"field-brandtextbin="].location != NSNotFound) {
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"field-brandtextbin="].location + 19))];
+		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@">"].location + 1))];		
+		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
+		[scanner scanUpToString:@"<" intoString:&brand];
+	}
+		
+	NSDictionary *returnDict = [NSDictionary dictionaryWithObjectsAndKeys:productImageURL, @"imagePath", productTitle, @"title", currency, @"currency", listPrice, @"listPrice", category, @"category", model, @"model", brand, @"brand", nil];
+	
+	//NSLog(@"Return: %@", returnDict);
+	
+	return returnDict;
+>>>>>>> FETCH_HEAD
 }
 
 

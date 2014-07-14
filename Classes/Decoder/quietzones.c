@@ -161,10 +161,12 @@ int find_quiet_zones(IplImage *input, IplImage *threshold,
 		found++;
 	}
     
-    int qzf = &quietzones[found - 1].width;
-    
-	if (qzf < input->width / 20)
-		quietzones[found - 1].width = input->width / 20;
+    if (found > 0) {
+        int qzf = quietzones[found - 1].width;
+        
+        if (qzf < input->width / 20)
+            quietzones[found - 1].width = input->width / 20;
+    }
 	return found;
 }
 
