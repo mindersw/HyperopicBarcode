@@ -1,4 +1,4 @@
-//	(c) Copyright 2012 Conor Dearden & Michael LaMorte
+//	(c) Copyright 2012-2014 Conor Dearden & Michael LaMorte
 //
 //  Redistribution and use in source and binary forms, with or without modification, 
 //  are permitted provided that the following conditions are met:
@@ -32,10 +32,17 @@
 #import <QuartzCore/CIImage.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BarCodeDecoder.h"
+#import <CommonCrypto/CommonDigest.h>
+
+#import "XMLReader.h"
+
+#define ACCESS_KEY @"YOUR_ACCESS_KEY_HERE"
+#define SECRET_KEY @"YOUR_SECRET_KEY_HERE"
+#define ASSOCIATE_TAG @"YOUR_ASSOCIATE_TAG_HERE"
 
 @implementation BarcodeController
 
-@synthesize last1, last2;
+@synthesize last1, last2, currentLocale;
 
 - (void)awakeFromNib {
 	
@@ -147,17 +154,17 @@
     size_t height = input->height; // / 2;
 	
 	if ((width > 0) && (height > 0)) {
-		NSAutoreleasePool *innerPool = [NSAutoreleasePool new];
-		NSString *digits = [NSString stringWithString:[BarCodeDecoder decode:input]];
-		
-		if ([digits length] > 0) {
+		@autoreleasepool {
+			NSString *digits = [NSString stringWithString:[BarCodeDecoder decode:input]];
 			
-			BOOL success = 0;
-			
-			switch ([fastAccurateSwitch selectedSegment]) {
-				case 0:
-				{
-					// Accurate
+			if ([digits length] > 0) {
+				
+				BOOL success = 0;
+				
+				switch ([fastAccurateSwitch selectedSegment]) {
+					case 0:
+					{
+						// Accurate
                     if ([last1 isEqual:digits]) {
                         if ([last2 isEqual:digits]) {
                             success = 1;
@@ -170,35 +177,35 @@
                         self.last2 = nil;
                         self.last1 = digits;
                     }
-					
-				}
-					break;
-					
-				case 1:
-				{
-					// Fast
-					if ([last1 isEqual:digits]) {
-						success = 1;
+						
+					}
+						break;
+						
+					case 1:
+					{
+						// Fast
+						if ([last1 isEqual:digits]) {
+							success = 1;
                         self.last1 = nil;
-					} else {
+						} else {
                         self.last1 = digits;
+						}
+					}
+					default:
+						break;
+				}
+				
+				
+				if (success && keepScanning) {
+					if (keepScanning) {
+						keepScanning = 0;
+						[self foundBarcode:digits];
+                    return YES;
 					}
 				}
-				default:
-					break;
 			}
-			
-			
-			if (success && keepScanning) {
-				if (keepScanning) {
-					keepScanning = 0;
-					[self foundBarcode:digits];
-                    return YES;
-				}
-			}
-		}
 		
-		[innerPool release];
+		}
         
 	}
 
@@ -208,11 +215,15 @@
 
 - (void)foundBarcode:(NSString *)aBarcode {
 	
+    NSLog(@"aBarcode: %@", aBarcode);
+    
 	[upcResult setStringValue:aBarcode];
 	[barcodeLines setImage:[NSImage imageNamed:@"barcodeLinesBrightRed.png"]];
 
-	NSMutableDictionary *lookup = [NSMutableDictionary dictionaryWithDictionary:[self webScrapeAmazonForBarcode:aBarcode]];
+	NSMutableDictionary *lookup = [NSMutableDictionary dictionaryWithDictionary:[self amazonLookupResultsForBarcode:aBarcode]];
 	
+    NSLog(@"lookup: %@", lookup);
+    
 	if ([[lookup valueForKey:@"title"] length] > 0) {
 		[barcodeLines setImage:[NSImage imageNamed:@"barcodeLinesGreen.png"]];
 		[(NSSound *)[NSSound soundNamed:@"Glass"] play];
@@ -312,202 +323,29 @@
 	
 }
 
-- (NSDictionary *)webScrapeAmazonForBarcode:(NSString *)aBarcode {
+- (NSString *)queryAmazonForItemData:(NSString *)aBarcode {
+	// Look up info via AWS
+	NSString *httpRequest = [NSString stringWithFormat:@"%@&Operation=ItemSearch&Keywords=%@&SearchIndex=All&ItemPage=1&ResponseGroup=Small",
+                             [self baseDomain], aBarcode];
+	httpRequest = [self signRequest:httpRequest];
 	
-	NSString *country = [lookupLocale titleOfSelectedItem];
-	
+    
 	NSError *e = nil;
-	NSMutableString *searchResultsURL = [[NSMutableString alloc] initWithCapacity:10];
-	
-	if ([country isEqual:@"US"]) {
-		[searchResultsURL setString:@"http://www.amazon.com/s/field-keywords="];
-	} else if ([country isEqual:@"UK"]) {
-		[searchResultsURL setString:@"http://www.amazon.co.uk/s/field-keywords="];
-	} else if ([country isEqual:@"DE"]) {
-		[searchResultsURL setString:@"http://www.amazon.de/s/field-keywords="];
-	} else if ([country isEqual:@"JP"]) {
-		[searchResultsURL setString:@"http://www.amazon.jp/s/field-keywords="];
-	} else if ([country isEqual:@"CA"]) {
-		[searchResultsURL setString:@"http://www.amazon.ca/s/field-keywords="];
-	} else if ([country isEqual:@"FR"]) {
-		[searchResultsURL setString:@"http://www.amazon.fr/s/field-keywords="];
-	} else if ([country isEqual:@"IT"]) {
-		[searchResultsURL setString:@"http://www.amazon.it/s/field-keywords="];
-	} else if ([country isEqual:@"CN"]) {
-		[searchResultsURL setString:@"http://www.amazon.cn/s/field-keywords="];
-	} else if ([country isEqual:@"ES"]) {
-		[searchResultsURL setString:@"http://www.amazon.es/s/field-keywords="];
-	} else {
-		[searchResultsURL setString:@"http://www.amazon.com/s/field-keywords="];
-	}
-	
-	
-	[searchResultsURL appendString:aBarcode];
-	NSMutableString *searchResults = [[NSMutableString alloc] initWithContentsOfURL:[NSURL URLWithString:searchResultsURL] 
-																		   encoding:NSUTF8StringEncoding 
-																			  error:&e];
-	if (e) {
-		// we send the error home so that if there is a change in the URL, we'll know about it without the user sending a bug report
-		NSString *logError = [NSString stringWithFormat:@"http://www.mindersoftworks.com/appsupport/mystuff2/errorlogger.php?error=%@&url=%@", [e localizedDescription], searchResults];
-		NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:logError]];
-		[NSURLConnection connectionWithRequest:theRequest delegate:self];
-	}
-	
-	[searchResultsURL release];
-	
-	NSScanner *scanner;
-	scanner = [NSScanner scannerWithString:(NSString *)searchResults];
-	NSString *deleteMe = @"";
-	
-	if ([searchResults rangeOfString:@"result_0"].location == NSNotFound) {
-		// no search results found
-		[searchResults release];
-		return [NSDictionary dictionary];
-	}
-	
-	[scanner scanUpToString:@"result_0" intoString:&deleteMe];
-	
-	[searchResults deleteCharactersInRange:NSMakeRange(0, ([deleteMe length] - 1))];
-	
-	scanner = [NSScanner scannerWithString:(NSString *)searchResults];
-	[scanner scanUpToString:@"href=\"" intoString:&deleteMe];
-	[searchResults deleteCharactersInRange:NSMakeRange(0, ([deleteMe length] + 6))];
-	
-	scanner = [NSScanner scannerWithString:(NSString *)searchResults];	
-	NSString *detailURL = @"";
-	[scanner scanUpToString:@"/ref=" intoString:&detailURL];
-	[searchResults release];
-	
-	
-	NSString *detailPage = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:detailURL]
-														  encoding:NSASCIIStringEncoding
-															 error:&e];
-	
-	if (e) {
-		NSLog(@"webScrapeAmazonForBarcode Lookup Error: %@", e);
-		[detailPage release];
-		return [NSDictionary dictionary];
-	}
-	NSMutableString *mutableDetail = [[NSMutableString alloc] initWithString:detailPage];
-	
-	// --- Get Product Image
-	if ([mutableDetail rangeOfString:@"prodImageCell"].location == NSNotFound) {
-		// no results found
-		[mutableDetail release];
-		return [NSDictionary dictionary];
-	} else {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"prodImageCell"].location + 13))];
-	}
 
-	if ([mutableDetail rangeOfString:@"\"large\":\""].location == NSNotFound) {
-		// no results found
-		return [NSDictionary dictionary];
-	} else {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"\"large\":\""].location + 9))];
-	}
-
+	NSString *searchResults = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:httpRequest]
+															 encoding:NSASCIIStringEncoding
+																error:&e];
+    
 	
+	return searchResults;
 	
-	scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-	NSString *productImageURL = @"";
-	[scanner scanUpToString:@"\"" intoString:&productImageURL];
-	
-	[mutableDetail deleteCharactersInRange:NSMakeRange(0, [productImageURL length])];
-	
-	
-	// --- Get Product Title //btAsinTitle
-	NSString *productTitle = @"";
-	//[scanner scanUpToString:@"btAsinTitle\">" intoString:&deleteMe];
-	[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@"btAsinTitle\""].location + 13))];
-	if ([[mutableDetail substringToIndex:1] isEqual:@">"]) {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, 1)];
-	}
-	scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-	[scanner scanUpToString:@"</span>" intoString:&productTitle];
-	scanner = [NSScanner scannerWithString:productTitle];
-	[scanner scanUpToString:@"<span" intoString:&productTitle];
-	if ([[productTitle substringToIndex:1] isEqual:@">"]) {
-		productTitle = [productTitle substringFromIndex:1];
-	}
-	
-	
-	[mutableDetail deleteCharactersInRange:NSMakeRange(0, [productTitle length])];
-	scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-	
-	// --- Get Product Price
-	//[mutableDetail setString:detailPage];
-	NSMutableString *currency = [[[NSMutableString alloc] initWithString:@""] autorelease];
-	NSString *listPrice = @"";
-	
-	if ([detailPage rangeOfString:@"class=\"listprice\">"].location != NSNotFound) {
-		[scanner scanUpToString:@"class=\"listprice\">" intoString:&deleteMe];
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([deleteMe length] + 18))];
-		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-		NSString *price = @"";
-		[scanner scanUpToString:@"<" intoString:&price];
-		if ([price length] > 0) {
-			[currency setString:[price substringToIndex:1]];
-			[currency appendString:@" - "];
-			listPrice = [price substringWithRange:NSMakeRange(1, ([price length] - 1))];
-		}
-		// get currency code
-		[mutableDetail setString:detailPage];
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"\"currenyCode\":\""].location + 15))];
-		[currency appendString:[mutableDetail substringWithRange:NSMakeRange(0, 3)]];
-
-		//NSLog(@"currency: %@", currency);
-	}
-	
-	
-	// --- Get Product Category
-	NSString *category = @"";
-	[mutableDetail setString:detailPage];
-	// Not sure why the scanner isn't working
-	//scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-	//[scanner scanUpToString:@"selected=\"selected\" current=\"parent\">" intoString:&deleteMe];
-	if ([detailPage rangeOfString:@"selected=\"selected\" current=\"parent\">"].location != NSNotFound) {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"selected=\"selected\" current=\"parent\">"].location + 37))];
-		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-		[scanner scanUpToString:@"<" intoString:&category];
-	} else if ([detailPage rangeOfString:@"selected=\"selected\">"].location != NSNotFound) {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"selected=\"selected\">"].location + 20))];
-		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-		[scanner scanUpToString:@"<" intoString:&category];
-	}
-	
-	
-	// --- Get Model Number (if available)
-	NSString *model = @"";
-	[mutableDetail setString:detailPage];
-	if ([detailPage rangeOfString:@"<b>Item model number:</b>"].location != NSNotFound) {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"<b>Item model number:</b>"].location + 25))];
-		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-		[scanner scanUpToString:@"<" intoString:&model];
-	}
-	
-	// --- Get Brand (if available)
-	NSString *brand = @"";
-	[mutableDetail setString:detailPage];
-	if ([detailPage rangeOfString:@"field-brandtextbin="].location != NSNotFound) {
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([detailPage rangeOfString:@"field-brandtextbin="].location + 19))];
-		[mutableDetail deleteCharactersInRange:NSMakeRange(0, ([mutableDetail rangeOfString:@">"].location + 1))];		
-		scanner = [NSScanner scannerWithString:(NSString *)mutableDetail];
-		[scanner scanUpToString:@"<" intoString:&brand];
-	}
-	
-	[mutableDetail release];
-	[detailPage release];
-	
-	NSDictionary *returnDict = [NSDictionary dictionaryWithObjectsAndKeys:productImageURL, @"imagePath", productTitle, @"title", currency, @"currency", listPrice, @"listPrice", category, @"category", model, @"model", brand, @"brand", nil];
-	
-	//NSLog(@"Return: %@", returnDict);
-	
-	return returnDict;
+    
 }
 
 
-#pragma mark Convenience Methods
-// ================================================================================================== Convenience Methods
+
+#pragma mark Video Methods
+// ================================================================================================== Video Methods
 - (void)scanAgain {
 	resetFrames = 0;
 	keepScanning = 1;
@@ -546,21 +384,23 @@
     
     CVReturn possibleError = CVPixelBufferLockBaseAddress(pixelBuffer, 0);
 	if (possibleError) {
-		NSLog(@"Error locking pixel bufffer, when looking for barcode.");
+		NSLog(@"Error locking pixel buffer, when looking for barcode.");
 		return nil;
 	}
-		
-	Ptr pData = (Ptr)CVPixelBufferGetBaseAddress(pixelBuffer); 
+	
+	//[NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	
+	Ptr pData = (Ptr)CVPixelBufferGetBaseAddress(pixelBuffer);
     size_t width = CVPixelBufferGetWidth(pixelBuffer);
     size_t height = CVPixelBufferGetHeight(pixelBuffer);
-    //size_t rowBytes = CVPixelBufferGetBytesPerRow(pixelBuffer);    
+    //size_t rowBytes = CVPixelBufferGetBytesPerRow(pixelBuffer);
     
     IplImage *bgr_image = cvCreateImage(cvSize(width,height), IPL_DEPTH_8U, 3);
     
 	NSInteger i, j, totalBytes = height * width * 2;
-	for (i = 0, j = 0; i < totalBytes;  i+=6, j+=4) { 
+	for (i = 0, j = 0; i < totalBytes;  i+=6, j+=4) {
         
-        //Use lumnance only and save the calcualtions to RGB, this is a black and white picture that should have all we need.
+        //Use luminance only and save the calculations to RGB, this is a black and white picture that should have all we need.
         int y1 = (unsigned int)(pData[j+1] & 0xff);
         int y2 = (unsigned int)(pData[j+3] & 0xff);
         
@@ -574,7 +414,13 @@
     
 	CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
-    return bgr_image;
+	// Need to scale this down so hi-res camera don't overload the decode code & cause crashes
+	CvSize size = cvSize(640,480);
+	IplImage *scaledSize = cvCreateImage(size, IPL_DEPTH_8U, 3);
+	cvResize(bgr_image, scaledSize, CV_INTER_LINEAR);
+	cvReleaseImage(&bgr_image);
+	
+    return scaledSize;
 }
 
 - (IplImage *)createIplImageFromCGImageRef:(CGImageRef)imageRef {
@@ -770,5 +616,254 @@
 	 
 	 */
 }
+
+
+#pragma mark Amazon Lookup
+// -------------------------------------------------------------------------- Amazon Lookup
+- (NSDictionary *)amazonLookupResultsForBarcode:(NSString *)aBarcode {
+    // First have to look up info via AWS
+	NSString *httpRequest = [NSString stringWithFormat:@"%@&Operation=ItemSearch&Keywords=%@&SearchIndex=All&ItemPage=1&ResponseGroup=Small",
+                             [self baseDomain], aBarcode];
+	httpRequest = [self signRequest:httpRequest];
+	
+    
+	NSError *e = nil;
+	//NSMutableData *receivedData = [[NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:&e] mutableCopy];
+	NSString *searchResults = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:httpRequest]
+															 encoding:NSASCIIStringEncoding
+																error:&e];
+    
+	NSDictionary *amazonDict = [XMLReader dictionaryForXMLString:searchResults error:e];
+	
+	if (!e) {
+		return amazonDict;
+		
+	} else {
+		return [NSDictionary dictionary];
+	}
+}
+
+- (NSString *)encodeKeyword:(NSString *)keywords {
+	// Amazon does not search for ’ it has to be '
+	NSRange aRange = [keywords rangeOfString:[NSString stringWithFormat:@"%c", 213]];
+	if (aRange.location != NSNotFound) {
+		NSMutableString *removeApostraphe = [keywords mutableCopy];
+		[removeApostraphe replaceCharactersInRange:aRange withString:@"'"];
+		keywords = removeApostraphe;
+	}
+	
+	// don't encode amp sign for power search but yes for regular search.
+	if ([keywords rangeOfString:@"&Title"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Publisher"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Author"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Condition"].location != NSNotFound
+		|| [keywords rangeOfString:@"&MinimumPrice"].location != NSNotFound
+		|| [keywords rangeOfString:@"&MaximumPrice"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Power"].location != NSNotFound
+		|| [keywords rangeOfString:@"&AudienceRating"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Actor"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Director"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Artist"].location != NSNotFound
+		|| [keywords rangeOfString:@"&MusicLabel"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Brand"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Condition"].location != NSNotFound
+		|| [keywords rangeOfString:@"&Manufacturer"].location != NSNotFound
+		)
+
+		return (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)keywords, (CFStringRef)@"=&", (CFStringRef)@",!$'()*+;@?\n\"<>#\t :/", kCFStringEncodingUTF8));
+	else {
+		if ([currentLocale isEqualToString:@"CA"]) // Last one with the old encodings
+			return (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)keywords, NULL, (CFStringRef)@"=,!$&'()*+;@?\n\"<>#\t :/", kCFStringEncodingISOLatin1));
+		else
+			return (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)keywords, NULL, (CFStringRef)@"=,!$&'()*+;@?\n\"<>#\t :/", kCFStringEncodingUTF8));
+	}
+}
+
+- (NSString *)HTTPRequestString:(NSString *)keywords {
+	// ReviewSort=HelpfulVotes
+	// &BrowseNode=133141011 Kindle Books
+	
+	return [NSString stringWithFormat:@"%@&Operation=ItemSearch&Keywords=%@&SearchIndex=All&ItemPage=1&ResponseGroup=Small", [self baseDomain], keywords];
+}
+
+- (NSString *)baseDomain {
+	
+	self.currentLocale = [lookupLocale titleOfSelectedItem];
+	
+	if ([self.currentLocale isEqualToString:@"US"]) {
+        return [NSString stringWithFormat:@"http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+	else if ([self.currentLocale isEqualToString:@"UK"]) {
+        return [NSString stringWithFormat:@"http://ecs.amazonaws.co.uk/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+    else if ([self.currentLocale isEqualToString:@"DE"]) {
+        return [NSString stringWithFormat:@"http://ecs.amazonaws.de/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+	else if ([self.currentLocale isEqualToString:@"JP"]) {
+        return [NSString stringWithFormat:@"http://ecs.amazonaws.jp/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+	else if ([self.currentLocale isEqualToString:@"CA"]) {
+        return [NSString stringWithFormat:@"http://ecs.amazonaws.ca/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+	else if ([self.currentLocale isEqualToString:@"FR"]) {
+        return [NSString stringWithFormat:@"http://ecs.amazonaws.fr/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+    else if ([self.currentLocale isEqualToString:@"IT"]) {
+        return [NSString stringWithFormat:@"http://webservices.amazon.it/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+    else if ([self.currentLocale isEqualToString:@"CN"]) {
+        return [NSString stringWithFormat:@"http://webservices.amazon.cn/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+    else if ([self.currentLocale isEqualToString:@"ES"]) {
+        return [NSString stringWithFormat:@"http://webservices.amazon.es/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+    }
+	
+	return [NSString stringWithFormat:@"http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=%@&Version=2011-08-01&AssociateTag=%@", ACCESS_KEY, ASSOCIATE_TAG];
+}
+
+- (NSString *)signRequest:(NSString *)aRequest {
+		
+	NSInteger location = [aRequest rangeOfString:@"?"].location;
+	NSString *baseDomain = [aRequest substringToIndex:location];
+	NSString *valueSections = [aRequest substringFromIndex:location + 1];
+	
+	
+	// Add time stamp   &Timestamp=2009-01-01T12:00:00Z
+	if ([valueSections rangeOfString:@"&Timestamp"].location == NSNotFound) {
+		
+		NSDateFormatter *dateWriterFormatter = [[NSDateFormatter alloc] init];
+		[dateWriterFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+		[dateWriterFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		NSString *aTime = [dateWriterFormatter stringFromDate:[NSDate date]];
+		
+		valueSections = [valueSections stringByAppendingFormat:@"&Timestamp=%@", aTime];
+	}
+    
+	// Encode ,;:@ but do not double encode the %
+	valueSections = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)valueSections, (CFStringRef)@"&%", (CFStringRef)@":+,!$'()*;@?\n\"<>#\t/", kCFStringEncodingUTF8)); // ,';:@\"+?()! //valueSections = [NSMakeCollectable(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)valueSections, NULL, (CFStringRef)@"+\"',:", kCFStringEncodingUTF8)) autorelease];
+	
+	// sort and rejoin
+	NSArray *valuesArray = [valueSections componentsSeparatedByString:@"&"];
+	valuesArray = [valuesArray sortedArrayUsingSelector:@selector(compare:)];
+	valueSections = [valuesArray componentsJoinedByString:@"&"];
+	
+	// Create a string to sign
+	NSString *baseWithoutHTTP = [baseDomain substringFromIndex:7];
+	NSInteger slashLocation = [baseWithoutHTTP rangeOfString:@"/"].location;
+	NSString *server = [baseWithoutHTTP substringToIndex:slashLocation];
+	NSString *serverPath = [baseWithoutHTTP substringFromIndex:slashLocation];
+	NSString *stringToSign = [NSString stringWithFormat:@"GET\n%@\n%@\n%@", server, serverPath, valueSections];
+	
+	//Sign the string and encode +=
+	NSString *signature = [self hmacSHA256:stringToSign];
+	signature = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)signature, NULL, (CFStringRef)@"+=", kCFStringEncodingUTF8));
+	
+	// Append signature to sorted request
+	aRequest = [baseDomain stringByAppendingFormat:@"?%@&Signature=%@", valueSections, signature];
+	
+	//NSLog(@"Signed: %@", aRequest);
+	
+	return aRequest;
+}
+
+- (NSString *)hmacSHA256:(NSString *)aString {
+	
+	const char *text = [aString UTF8String];
+	int text_len = [aString lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+	const char *key = [SECRET_KEY UTF8String];
+	int key_len = [SECRET_KEY lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
+	
+    //NSLog(@"Key: %@", secretKey);
+	
+	unsigned char k_ipad[CC_SHA256_BLOCK_BYTES + 1];    /* inner padding */
+	unsigned char k_opad[CC_SHA256_BLOCK_BYTES + 1];    /* outer padding */
+	unsigned char tk[CC_SHA256_DIGEST_LENGTH];
+	int i;
+	
+	/* if key is longer than 64 bytes hash it*/
+	if (key_len > CC_SHA256_BLOCK_BYTES) {
+		
+		CC_SHA256_CTX shaContext;
+		CC_SHA256_Init(&shaContext);
+		CC_SHA256_Update(&shaContext, key, key_len);
+		CC_SHA256_Final(tk, &shaContext);
+		key_len = CC_SHA256_DIGEST_LENGTH;
+	}
+	
+	
+	/* SHA256(K XOR opad, SHA256(K XOR ipad, text))
+	 *
+	 * where K is an n byte key
+	 * ipad is the byte 0x36 repeated 64 times
+	 
+	 * opad is the byte 0x5c repeated 64 times
+	 * and text is the data being protected
+	 */
+	
+	// start out by storing key in pads
+	bzero( k_ipad, sizeof k_ipad);
+	bzero( k_opad, sizeof k_opad);
+	bcopy( key, k_ipad, key_len);
+	bcopy( key, k_opad, key_len);
+	
+	// XOR key with ipad and opad values
+	for (i=0; i<CC_SHA256_BLOCK_BYTES; i++) {
+		k_ipad[i] ^= 0x36;
+		k_opad[i] ^= 0x5c;
+	}
+	
+	// perform inner SHA256
+	unsigned char hashedChars[CC_SHA256_DIGEST_LENGTH];
+	CC_SHA256_CTX shaContext;
+	CC_SHA256_Init(&shaContext);
+	CC_SHA256_Update(&shaContext, k_ipad, CC_SHA256_BLOCK_BYTES);
+	CC_SHA256_Update(&shaContext, text, text_len);
+	CC_SHA256_Final(hashedChars, &shaContext);
+	
+	// perform outer SHA256
+	CC_SHA256_Init(&shaContext);
+	CC_SHA256_Update(&shaContext, k_opad, CC_SHA256_BLOCK_BYTES);
+	CC_SHA256_Update(&shaContext, hashedChars, CC_SHA256_DIGEST_LENGTH);
+	CC_SHA256_Final(hashedChars, &shaContext);
+	
+	
+	NSData *hashData = [[NSData alloc] initWithBytes:hashedChars length:sizeof(hashedChars)];
+	NSString *base64EncodedResult = [self base64StringFromData:hashData];
+	
+	return base64EncodedResult;
+}
+
+- (NSString *)base64StringFromData:(NSData *)data {
+	if ([data length] == 0)
+		return @"";
+	
+	const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    char *characters = malloc((([data length] + 2) / 3) * 4);  //Freed by freeWhenDone below
+	if (characters == NULL)
+		return nil;
+	NSUInteger length = 0;
+	
+	NSUInteger i = 0;
+	while (i < [data length])
+	{
+		char buffer[3] = {0,0,0};
+		short bufferLength = 0;
+		while (bufferLength < 3 && i < [data length])
+			buffer[bufferLength++] = ((char *)[data bytes])[i++];
+		
+		//  Encode the bytes in the buffer to four characters, including padding "=" characters if necessary.
+		characters[length++] = encodingTable[(buffer[0] & 0xFC) >> 2];
+		characters[length++] = encodingTable[((buffer[0] & 0x03) << 4) | ((buffer[1] & 0xF0) >> 4)];
+		if (bufferLength > 1)
+			characters[length++] = encodingTable[((buffer[1] & 0x0F) << 2) | ((buffer[2] & 0xC0) >> 6)];
+		else characters[length++] = '=';
+		if (bufferLength > 2)
+			characters[length++] = encodingTable[buffer[2] & 0x3F];
+		else characters[length++] = '=';
+	}
+	
+	return [[NSString alloc] initWithBytesNoCopy:characters length:length encoding:NSASCIIStringEncoding freeWhenDone:YES];
+}
+
 
 @end

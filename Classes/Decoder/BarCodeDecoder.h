@@ -1,4 +1,4 @@
-//	(c) Copyright 2012 Conor Dearden & Michael LaMorte
+//	(c) Copyright 2012-2014 Conor Dearden & Michael LaMorte
 //
 //
 //  BarCodeDecoder.h

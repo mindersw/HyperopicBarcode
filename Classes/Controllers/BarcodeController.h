@@ -1,4 +1,4 @@
-//	(c) Copyright 2012 Conor Dearden & Michael LaMorte
+//	(c) Copyright 2012-2014 Conor Dearden & Michael LaMorte
 //
 //  Redistribution and use in source and binary forms, with or without modification, 
 //  are permitted provided that the following conditions are met:
@@ -44,7 +44,7 @@
 	// ================================================================= ivars
 	QTCaptureSession *captureSession;
 	QTCaptureDevice *videoDevice;
-	
+	NSString *currentLocale;
 	
 	// ================================================================= Barcode Processing
 	int numberOfDigitsFound;
@@ -66,7 +66,7 @@
 
 @property (strong, nonatomic) NSString *last1;
 @property (strong, nonatomic) NSString *last2;
-
+@property (readwrite, strong) NSString *currentLocale;
 
 // ================================================================= Delegate Methods
 - (void)captureOutput:(QTCaptureOutput *)captureOutput didOutputVideoFrame:(CVImageBufferRef)videoFrame withSampleBuffer:(QTSampleBuffer *)sampleBuffer fromConnection:(QTCaptureConnection *)connection;
@@ -78,7 +78,6 @@
 - (BOOL)processIplImage:(IplImage *)input;
 //- (void)processCGImageRef:(CGImageRef)imgRef;
 - (void)foundBarcode:(NSString *)aBarcode;
-- (NSDictionary *)webScrapeAmazonForBarcode:(NSString *)aBarcode;
 
 
 // ================================================================= Convenience Methods
@@ -88,6 +87,9 @@
 - (IplImage *)createIplImageFromVideoBuffer:(CVImageBufferRef)pixelBuffer;
 - (IplImage *)createIplImageFromCGImageRef:(CGImageRef)imageRef;
 - (void)setFWiSightShortFocus;
+
+
+// ================================================================= Amazon Lookup
 
 
 @end

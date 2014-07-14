@@ -2,9 +2,9 @@
 {
 	256AC3D80F4B6AC300CF3369 /* HyperopicBarcodeAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {859, 432}}";
+			sepNavIntBoundsRect = "{{0, 0}, {859, 456}}";
 			sepNavSelRange = "{283, 24}";
-			sepNavVisRange = "{0, 1589}";
+			sepNavVisRange = "{0, 1751}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
@@ -63,21 +63,31 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 386883699;
-			PBXWorkspaceStateSaveDate = 386883699;
+			PBXPerProjectTemplateStateSaveDate = 396307621;
+			PBXWorkspaceStateSaveDate = 396307621;
 		};
 		perUserProjectItems = {
+			4D3386D2179F2CAF000B0CD1 /* PBXTextBookmark */ = 4D3386D2179F2CAF000B0CD1 /* PBXTextBookmark */;
 			4D79F17116D57C62003A8BDE /* PBXTextBookmark */ = 4D79F17116D57C62003A8BDE /* PBXTextBookmark */;
 			4D79F17216D57C62003A8BDE /* PBXTextBookmark */ = 4D79F17216D57C62003A8BDE /* PBXTextBookmark */;
 			4D79F17316D57C62003A8BDE /* PBXTextBookmark */ = 4D79F17316D57C62003A8BDE /* PBXTextBookmark */;
 			4D79F17C16D57D97003A8BDE /* PBXTextBookmark */ = 4D79F17C16D57D97003A8BDE /* PBXTextBookmark */;
 			4D79F19C16D580E7003A8BDE /* PBXTextBookmark */ = 4D79F19C16D580E7003A8BDE /* PBXTextBookmark */;
-			4D7DDB9F16EF602D002B16B5 /* PBXTextBookmark */ = 4D7DDB9F16EF602D002B16B5 /* PBXTextBookmark */;
 			4DE63017170F607D00626EBA /* PBXTextBookmark */ = 4DE63017170F607D00626EBA /* PBXTextBookmark */;
 		};
 		sourceControlManager = 4D79F04416D5760D003A8BDE /* Source Control */;
 		userBuildSettings = {
 		};
+	};
+	4D3386D2179F2CAF000B0CD1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 256AC3D80F4B6AC300CF3369 /* HyperopicBarcodeAppDelegate.h */;
+		name = "HyperopicBarcodeAppDelegate.h: 8";
+		rLen = 24;
+		rLoc = 283;
+		rType = 0;
+		vrLen = 1751;
+		vrLoc = 0;
 	};
 	4D79F03016D57606003A8BDE /* HyperopicBarcode */ = {
 		isa = PBXExecutable;
@@ -203,16 +213,6 @@
 		rLoc = 30;
 		rType = 0;
 		vrLen = 1077;
-		vrLoc = 0;
-	};
-	4D7DDB9F16EF602D002B16B5 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 256AC3D80F4B6AC300CF3369 /* HyperopicBarcodeAppDelegate.h */;
-		name = "HyperopicBarcodeAppDelegate.h: 8";
-		rLen = 24;
-		rLoc = 283;
-		rType = 0;
-		vrLen = 1589;
 		vrLoc = 0;
 	};
 	4DE63017170F607D00626EBA /* PBXTextBookmark */ = {

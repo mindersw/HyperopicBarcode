@@ -1,3 +1,4 @@
+//	(c) Copyright 2012-2014 Conor Dearden & Michael LaMorte
 //
 //  HyperopicBarcodeAppDelegate.m
 //  HyperopicBarcode

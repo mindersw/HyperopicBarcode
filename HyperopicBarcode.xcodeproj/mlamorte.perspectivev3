@@ -301,7 +301,7 @@
 							<real>253</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>44 368 1195 810 0 0 1920 1178 </string>
+						<string>205 368 1195 810 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>4DE63017170F607D00626EBA</string>
+										<string>4D3386D2179F2CAF000B0CD1</string>
 										<key>history</key>
 										<array>
 											<string>4D79F17116D57C62003A8BDE</string>
@@ -337,7 +337,7 @@
 											<string>4D79F17316D57C62003A8BDE</string>
 											<string>4D79F17C16D57D97003A8BDE</string>
 											<string>4D79F19C16D580E7003A8BDE</string>
-											<string>4D7DDB9F16EF602D002B16B5</string>
+											<string>4DE63017170F607D00626EBA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -351,18 +351,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {920, 438}}</string>
+								<string>{{0, 0}, {920, 429}}</string>
 								<key>RubberWindowFrame</key>
-								<string>44 368 1195 810 0 0 1920 1178 </string>
+								<string>205 368 1195 810 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>438pt</string>
+							<string>429pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>326pt</string>
+							<string>335pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -376,9 +376,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {920, 299}}</string>
+										<string>{{10, 27}, {920, 308}}</string>
 										<key>RubberWindowFrame</key>
-										<string>44 368 1195 810 0 0 1920 1178 </string>
+										<string>205 368 1195 810 0 0 1920 1178 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -460,11 +460,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>4DE63018170F607D00626EBA</string>
+				<string>4D3386D3179F2CAF000B0CD1</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>4DE63019170F607D00626EBA</string>
+				<string>4D3386D4179F2CAF000B0CD1</string>
 				<string>4D79F03E16D5760D003A8BDE</string>
-				<string>4DE6301A170F607D00626EBA</string>
+				<string>4D3386D5179F2CAF000B0CD1</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -658,7 +658,7 @@
 		<string>/Volumes/Users/mlamorte/Springboard/Working Copies/HyperopicBarcode/HyperopicBarcode.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>44 368 1195 810 0 0 1920 1178 </string>
+	<string>205 368 1195 810 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

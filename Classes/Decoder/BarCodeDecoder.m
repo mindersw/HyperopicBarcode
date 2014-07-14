@@ -1,4 +1,4 @@
-//	(c) Copyright 2012 Conor Dearden & Michael LaMorte
+//	(c) Copyright 2012-2014 Conor Dearden & Michael LaMorte
 //  Portions (c) Copyright 2008-2009 Johann C. Rocholl
 //
 //
@@ -93,12 +93,9 @@ void copy_channel(const IplImage* input, IplImage* output, IplImage* channel,
 	release_images(&data);
 	
 	if (success) {
-		NSString *returnString = [NSString stringWithString:(NSString *)returnValue];
-		[returnValue release];
-		return returnString;
+		return (NSString *)returnValue;
 	}
 	
-	[returnValue release];
 	return [NSString string];
 }
 
@@ -143,11 +140,9 @@ void copy_channel(const IplImage* input, IplImage* output, IplImage* channel,
 	
 	if (success) {
 		NSString *returnString = [NSString stringWithString:(NSString *)returnValue];
-		[returnValue release];
 		return returnString;
 	}
 	
-	[returnValue release];
 	return [NSString string];
 
 }
