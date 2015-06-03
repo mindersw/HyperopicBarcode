@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4931F20C-C17B-47BF-9793-66428CCE9211</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E9D3D5275ED32175346FAC9B559C8CA51E6906FC</key>
+		<string>https://github.com/mindersw/HyperopicBarcode.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>HyperopicBarcode.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E9D3D5275ED32175346FAC9B559C8CA51E6906FC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mindersw/HyperopicBarcode.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E9D3D5275ED32175346FAC9B559C8CA51E6906FC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E9D3D5275ED32175346FAC9B559C8CA51E6906FC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HyperopicBarcode</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -24,72 +24,39 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <QTKit/QTKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "BarCodeDecoder.h"
 
-@class QTCaptureSession, QTCaptureView, QTCaptureDevice;
-
-@interface BarcodeController : NSObject {
-
-	// ================================================================= IBOutlets
-	IBOutlet NSWindow *barcodeScannerWindow;
-	IBOutlet NSImageView *barcodeLines;
-	IBOutlet QTCaptureView *qtCaptureViewer;
-	IBOutlet NSTextField *upcResult;
-	IBOutlet NSTextField *cameraNameLabel;
-	IBOutlet NSTextField *detailLabel;
-	IBOutlet NSSegmentedControl *fastAccurateSwitch;
-	IBOutlet NSPopUpButton *lookupLocale;
-	
-	// ================================================================= ivars
-	QTCaptureSession *captureSession;
-	QTCaptureDevice *videoDevice;
-	NSString *currentLocale;
-	
-	// ================================================================= Barcode Processing
-	int numberOfDigitsFound;
-	int frameCount;
-	int runFrames;
-	int resetFrames;
-	
-	// for Faster/Better switch
-	NSString *last1;
-	NSString *last2;
-	
-	BOOL keepScanning, pause;
-	
-	//stores most recent frame grabbed from a CVImageBufferRef
-	CVImageBufferRef currentImageBuffer;
-	
-	BarCodeDecoder *decoder;
-}
+@interface BarcodeController : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @property (strong, nonatomic) NSString *last1;
 @property (strong, nonatomic) NSString *last2;
 @property (readwrite, strong) NSString *currentLocale;
 
 // ================================================================= Delegate Methods
-- (void)captureOutput:(QTCaptureOutput *)captureOutput didOutputVideoFrame:(CVImageBufferRef)videoFrame withSampleBuffer:(QTSampleBuffer *)sampleBuffer fromConnection:(QTCaptureConnection *)connection;
-- (CIImage *)view:(QTCaptureView *)view willDisplayImage:(CIImage *)image;
-
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection;
 
 // ================================================================= Frame Grabbing & Processing
-//- (void)grabFrameAndProcess:(NSBitmapImageRep *)bitmap;
+- (void)beginCapture;
 - (BOOL)processIplImage:(IplImage *)input;
-//- (void)processCGImageRef:(CGImageRef)imgRef;
 - (void)foundBarcode:(NSString *)aBarcode;
 
 
 // ================================================================= Convenience Methods
-- (void)openScanner;
-- (void)scanAgain;
+- (NSString *)queryAmazonForItemData:(NSString *)aBarcode;
 - (BOOL)closeVideoSession;
 - (IplImage *)createIplImageFromVideoBuffer:(CVImageBufferRef)pixelBuffer;
 - (IplImage *)createIplImageFromCGImageRef:(CGImageRef)imageRef;
-- (void)setFWiSightShortFocus;
 
 
 // ================================================================= Amazon Lookup
+- (NSDictionary *)amazonLookupResultsForBarcode:(NSString *)aBarcode;
+- (NSString *)encodeKeyword:(NSString *)keywords;
+- (NSString *)HTTPRequestString:(NSString *)keywords;
+- (NSString *)baseDomain;
+- (NSString *)signRequest:(NSString *)aRequest;
+- (NSString *)hmacSHA256:(NSString *)aString;
+- (NSString *)base64StringFromData:(NSData *)data;
 
 
 @end
